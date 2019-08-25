@@ -61,6 +61,9 @@
      <Compile Include="Assets\Scripts\EnemyStats.cs" />
      <Compile Include="Assets\Scripts\GameRules.cs" />
      <Compile Include="Assets\Scripts\HoverOverCard.cs" />
+     <Compile Include="Assets\Scripts\LayoutHandler.cs" />
+     <Compile Include="Assets\Scripts\PlayerCardDropZone.cs" />
+     <Compile Include="Assets\Scripts\PlayerHand.cs" />
      <Compile Include="Assets\Scripts\PlayerStats.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/dxtr/unity projects/ChibiVentures/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
