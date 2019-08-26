@@ -10,6 +10,9 @@ public class GameRules : MonoBehaviour
     public int playerSupply;
     public int playerMana;
     public int playerDeckSize;
+    public int playerStartHandSize;
+    public int playerMaxHandSize;
+    public int playerUnitSlots;
 
 
 
@@ -20,4 +23,15 @@ public class GameRules : MonoBehaviour
     public int enemyDeckSize;
 
 
+    void Awake()
+    {
+        GameHandler.playerHealth = playerHealth;
+        GameHandler.playerSupply = playerSupply;
+        GameHandler.playerMana = playerMana;
+        GameHandler.playerFreeUnitSlots = playerUnitSlots;
+        GameHandler.playerHandSize = 0;
+        GameHandler.playerStartHandSize = playerStartHandSize;
+        GameHandler.playerMaxHandSize = playerMaxHandSize;
+
+    }
 }

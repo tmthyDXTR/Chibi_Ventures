@@ -6,16 +6,24 @@ using UnityEngine.EventSystems;
 
 public class Draggable : MonoBehaviour
 {
+    private CardDisplay card;
+
     public Transform originalParent;
     public Transform parentToReturnTo = null;
     public bool isDragged = false;
+    public bool isDropped = false;
 
     public GameObject placeholderPrefab;
     public GameObject placeholder;
 
+    public enum Slot { UNIT, SPELL, HAND }
+    public Slot cardType = Slot.UNIT;
+
     void Awake()
     {
         originalParent = this.transform.parent;
+
+        card = GetComponent<CardDisplay>();
     }
 
     public void OnMouseDown()
@@ -28,6 +36,14 @@ public class Draggable : MonoBehaviour
         placeholder.transform.SetSiblingIndex(this.transform.GetSiblingIndex());
 
         isDragged = true;
+        if(isDropped == true)
+        {
+            Debug.Log("Unit Card Grabbed");
+            isDropped = false;
+            GameHandler.PlayerGrabUnit();
+            GameHandler.AddSupply(card.cost);
+        }
+
         parentToReturnTo = this.transform.parent;
         this.transform.SetParent(this.transform.parent.parent);
     }
@@ -58,12 +74,20 @@ public class Draggable : MonoBehaviour
     public void OnMouseUp()
     {
         Debug.Log("OnEndDrag");
+
         this.transform.SetParent(parentToReturnTo);
         this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());
         GetComponent<CanvasGroup>().blocksRaycasts = true;
         isDragged = false;
+        isDropped = false;
         Destroy(placeholder);
-
+        if (parentToReturnTo.name == "PlayerCardDropZone")
+        {
+            Debug.Log("Unit Card Dropped");
+            GameHandler.PlayerDropUnit();
+            GameHandler.RemoveSupply(card.cost);
+            isDropped = true;
+        }
     }
 
     Vector3 mousePos()

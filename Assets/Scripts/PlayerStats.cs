@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -11,14 +12,39 @@ public class PlayerStats : MonoBehaviour
     public Text playerSupplyText;
     public Text playerManaText;
 
-    void Start()
+    void Awake()
     {
         gameRules = GameObject.Find("GameRules").GetComponent<GameRules>();
 
-        playerHealthText.text = gameRules.playerHealth.ToString();
-        playerSupplyText.text = gameRules.playerSupply.ToString();
-        playerManaText.text = gameRules.playerMana.ToString();
+        playerHealthText.text = GameHandler.playerHealth.ToString();
+        playerSupplyText.text = GameHandler.playerSupply.ToString();
+        playerManaText.text = GameHandler.playerMana.ToString();
 
+        GameHandler.OnPlayerHealthChanged += delegate (object sender, EventArgs e)
+        {
+            UpdatePlayerHealthText();
+        };
+        GameHandler.OnPlayerSupplyChanged += delegate (object sender, EventArgs e)
+        {
+            UpdatePlayerSupplyText();
+        };
+        GameHandler.OnPlayerManaChanged += delegate (object sender, EventArgs e)
+        {
+            UpdatePlayerManaText();
+        };
+    }
+
+    private void UpdatePlayerHealthText()
+    {
+        playerHealthText.text = GameHandler.playerHealth.ToString();
+    }
+    private void UpdatePlayerSupplyText()
+    {
+        playerSupplyText.text = GameHandler.playerSupply.ToString();
+    }
+    private void UpdatePlayerManaText()
+    {
+        playerManaText.text = GameHandler.playerMana.ToString();
     }
 
     void Update()
