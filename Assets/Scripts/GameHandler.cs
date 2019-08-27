@@ -61,7 +61,7 @@ public static class GameHandler
     public static void AddHealth(int amount)
     {
         Debug.Log("Added " + amount + " Health");
-        playerSupply += amount;
+        playerHealth += amount;
         if (OnPlayerHealthChanged != null) OnPlayerHealthChanged(null, EventArgs.Empty);
     }
 
@@ -84,14 +84,14 @@ public static class GameHandler
     public static void RemoveMana(int amount)
     {
         Debug.Log("Removed " + amount + " Mana");
-        playerSupply -= amount;
+        playerMana -= amount;
         if (OnPlayerManaChanged != null) OnPlayerManaChanged(null, EventArgs.Empty);
     }
 
     public static void AddMana(int amount)
     {
         Debug.Log("Added " + amount + " Mana");
-        playerSupply += amount;
+        playerMana += amount;
         if (OnPlayerManaChanged != null) OnPlayerManaChanged(null, EventArgs.Empty);
     }
 }

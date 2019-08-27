@@ -19,20 +19,29 @@ public class HoverOverCard : MonoBehaviour
 
     void OnMouseEnter()
     {
-        
+        SetHoverSize();
     }
 
     void OnMouseOver()
+    {
+        
+    }
+
+    void OnMouseExit()
+    {
+        SetOriginalSize();
+    }
+
+
+    public void SetHoverSize()
     {
         canvas.sortingOrder = 1;
         transform.localScale = new Vector3(originalSize.x * hoverSize, originalSize.y * hoverSize, originalSize.z);
     }
 
-    void OnMouseExit()
+    public void SetOriginalSize()
     {
         canvas.sortingOrder = 0;
         transform.localScale = originalSize;
-
     }
-
 }

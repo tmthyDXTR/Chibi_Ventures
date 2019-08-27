@@ -11,6 +11,8 @@ public class GameState : MonoBehaviour
     private enum State
     {
         GameStart,
+        FirstPlayerTurn,
+        FirstEnemyTurn,
         PlayerTurn,
         EnemyTurn,
 
@@ -37,17 +39,25 @@ public class GameState : MonoBehaviour
                 else
                 {
                     turnCounter += 1;
-                    state = State.PlayerTurn;
+                    state = State.FirstPlayerTurn;
                 }          
                 break;
 
+            case State.FirstPlayerTurn:
+                Debug.Log("Player Turn " + turnCounter);
+
+                break;
+
+            case State.FirstEnemyTurn:
+
+                break;
+
             case State.PlayerTurn:
-                //Debug.Log("Player Turn " + turnCounter);
+                
 
                 break;
 
             case State.EnemyTurn:
-
                 break;
 
         }
@@ -55,6 +65,25 @@ public class GameState : MonoBehaviour
 
     public void EndTurn()
     {
-        state = State.EnemyTurn;
+        if (state == State.FirstPlayerTurn)
+        {
+            state = State.FirstEnemyTurn;
+        }
+        else if (state == State.FirstEnemyTurn)
+        {
+            GameHandler.AddSupply(2);
+            GameHandler.AddMana(1);
+            state = State.PlayerTurn;
+        }
+        else if (state == State.PlayerTurn)
+        {
+            state = State.EnemyTurn;
+        }
+        else if (state == State.EnemyTurn)
+        {
+            GameHandler.AddSupply(2);
+            GameHandler.AddMana(1);
+            state = State.PlayerTurn;
+        }
     }
 }

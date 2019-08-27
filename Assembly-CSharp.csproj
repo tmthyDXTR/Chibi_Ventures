@@ -69,6 +69,7 @@
      <Compile Include="Assets\Scripts\PlayerDeck.cs" />
      <Compile Include="Assets\Scripts\PlayerHand.cs" />
      <Compile Include="Assets\Scripts\PlayerStats.cs" />
+     <Compile Include="Assets\Scripts\UnitInfo.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/dxtr/unity projects/ChibiVentures/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

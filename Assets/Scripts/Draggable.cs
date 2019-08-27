@@ -6,7 +6,8 @@ using UnityEngine.EventSystems;
 
 public class Draggable : MonoBehaviour
 {
-    private CardDisplay card;
+    private UnitInfo card;
+    private HoverOverCard hover;
 
     public Transform originalParent;
     public Transform parentToReturnTo = null;
@@ -23,7 +24,8 @@ public class Draggable : MonoBehaviour
     {
         originalParent = this.transform.parent;
 
-        card = GetComponent<CardDisplay>();
+        card = GetComponent<UnitInfo>();
+        hover = GetComponent<HoverOverCard>();
     }
 
     public void OnMouseDown()
@@ -32,9 +34,10 @@ public class Draggable : MonoBehaviour
 
         placeholder = Instantiate(placeholderPrefab, this.transform.position, Quaternion.identity) as GameObject;
         placeholder.transform.SetParent(this.transform.parent);
-        placeholder.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+        placeholder.transform.localScale = new Vector3(0.33f, 0.33f, 0);
         placeholder.transform.SetSiblingIndex(this.transform.GetSiblingIndex());
 
+        
         isDragged = true;
         if(isDropped == true)
         {
@@ -74,6 +77,7 @@ public class Draggable : MonoBehaviour
     public void OnMouseUp()
     {
         Debug.Log("OnEndDrag");
+
 
         this.transform.SetParent(parentToReturnTo);
         this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());

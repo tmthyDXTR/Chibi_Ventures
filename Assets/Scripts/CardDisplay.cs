@@ -21,6 +21,10 @@ public class CardDisplay : MonoBehaviour
     public Text healthText;
 
     public int cost;
+    public int physicalAttack;
+    public int magicalAttack;
+    public int armor;
+    public int health;
 
     void Start()
     {
