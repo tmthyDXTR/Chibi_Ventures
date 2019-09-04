@@ -20,6 +20,9 @@ public static class GameHandler
     public static int playerMaxHandSize;
     public static int playerStartHandSize;
 
+    private static PlayerCardDropZone playerDropZone;
+    private static PlayerHand playerHand;
+
 
     public static void PlayerGrabUnit()
     {
@@ -27,10 +30,15 @@ public static class GameHandler
         if (OnPlayerFreeUnitSlotsChanged != null) OnPlayerFreeUnitSlotsChanged(null, EventArgs.Empty);
     }
 
-    public static void PlayerDropUnit()
+    public static void PlayerDropUnit(GameObject unit)
     {
         playerFreeUnitSlots -= 1;
+        playerHandSize -= 1;
         if (OnPlayerFreeUnitSlotsChanged != null) OnPlayerFreeUnitSlotsChanged(null, EventArgs.Empty);
+        playerDropZone = GameObject.Find("PlayerCardDropZone").GetComponent<PlayerCardDropZone>();
+        playerDropZone.droppedPlayerUnits.Add(unit);
+        playerHand = GameObject.Find("PlayerHand").GetComponent<PlayerHand>();
+        playerHand.playerHandList.Remove(unit);
     }
 
     public static int GetPlayerFreeUnitSlots()

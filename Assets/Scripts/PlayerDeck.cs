@@ -9,7 +9,6 @@ public class PlayerDeck : MonoBehaviour
 
     public Transform playerHand;
 
-
     void Awake()
     {
         playerHand = GameObject.Find("PlayerHand").transform;
@@ -24,16 +23,16 @@ public class PlayerDeck : MonoBehaviour
         AddCardToDeckList("Unit_Mage");
         AddCardToDeckList("Unit_Mage");
         AddCardToDeckList("Unit_Mage");
-        AddCardToDeckList("Spell_Fireball");
-        AddCardToDeckList("Spell_Fireball");
-        AddCardToDeckList("Spell_Fireball");
-        AddCardToDeckList("Spell_Fireball");
-        AddCardToDeckList("Spell_IceBlast");
-        AddCardToDeckList("Spell_IceBlast");
-        AddCardToDeckList("Spell_IceBlast");
-        AddCardToDeckList("Spell_Tornado");
-        AddCardToDeckList("Spell_Tornado");
-        AddCardToDeckList("Spell_Tornado");
+        //AddCardToDeckList("Spell_Fireball");
+        //AddCardToDeckList("Spell_Fireball");
+        //AddCardToDeckList("Spell_Fireball");
+        //AddCardToDeckList("Spell_Fireball");
+        //AddCardToDeckList("Spell_IceBlast");
+        //AddCardToDeckList("Spell_IceBlast");
+        //AddCardToDeckList("Spell_IceBlast");
+        //AddCardToDeckList("Spell_Tornado");
+        //AddCardToDeckList("Spell_Tornado");
+        //AddCardToDeckList("Spell_Tornado");
 
         ShuffleDeck();
     }
@@ -51,6 +50,7 @@ public class PlayerDeck : MonoBehaviour
             deckList[0].GetComponent<Draggable>().originalParent = playerHand;
             deckList.RemoveAt(0);
             GameHandler.playerHandSize += 1;
+            playerHand.GetComponent<PlayerHand>().playerHandList.Add(deckList[0]);
         }
     }
 

@@ -11,6 +11,9 @@ public class PlayerCardDropZone : MonoBehaviour
     public Draggable card;
     public Draggable.Slot cardSlot = Draggable.Slot.UNIT;
 
+    public List<GameObject> droppedPlayerUnits = new List<GameObject>();
+
+
     public int freeUnitSlots;
 
     private HorizontalLayoutGroup hlg;

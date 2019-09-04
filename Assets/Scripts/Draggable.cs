@@ -88,7 +88,7 @@ public class Draggable : MonoBehaviour
         if (parentToReturnTo.name == "PlayerCardDropZone")
         {
             Debug.Log("Unit Card Dropped");
-            GameHandler.PlayerDropUnit();
+            GameHandler.PlayerDropUnit(this.gameObject);
             GameHandler.RemoveSupply(card.cost);
             isDropped = true;
         }

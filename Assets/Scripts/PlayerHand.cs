@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class PlayerHand : MonoBehaviour
 {
+    public List<GameObject> playerHandList = new List<GameObject>();
+
     public Draggable card;
     public Draggable.Slot cardSlot = Draggable.Slot.HAND;
 
@@ -33,11 +35,12 @@ public class PlayerHand : MonoBehaviour
                 {
                     Debug.Log("GetMouseButtonUp(0)");
 
-                    other.transform.SetParent(card.parentToReturnTo);
-                    other.transform.SetSiblingIndex(card.placeholder.transform.GetSiblingIndex());
-                    other.GetComponent<CanvasGroup>().blocksRaycasts = true;
+                    card.transform.SetParent(card.parentToReturnTo);
+                    card.transform.SetSiblingIndex(card.placeholder.transform.GetSiblingIndex());
+                    card.GetComponent<CanvasGroup>().blocksRaycasts = true;
                     card.isDragged = false;
                     //Destroy(card.placeholder);
+                    
                 }
             }
 
